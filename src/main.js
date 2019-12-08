@@ -464,15 +464,15 @@ const renderElement = (parentElement, elementMarkup, place = `beforeend`) => {
 };
 
 
-const mainElement = document.querySelector('.main');
-const mainControlElement = mainElement.querySelector('.main__control');
+const mainElement = document.querySelector(`.main`);
+const mainControlElement = mainElement.querySelector(`.main__control`);
 
 renderElement(mainControlElement, createMainNav());
 renderElement(mainElement, createFilters());
 
 renderElement(mainElement, createBoard());
-const boardElement = mainElement.querySelector('.board');
-const boardTasksContainer = boardElement.querySelector('.board__tasks');
+const boardElement = mainElement.querySelector(`.board`);
+const boardTasksContainer = boardElement.querySelector(`.board__tasks`);
 
 renderElement(boardTasksContainer, createTaskEditForm());
 renderElement(boardTasksContainer, createTask());
