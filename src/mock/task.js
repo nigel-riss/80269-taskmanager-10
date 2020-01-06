@@ -8,6 +8,16 @@ const TaskDescriptions = [
   `Пройти интенсив на соточку`,
 ];
 
+const DefaultRepeatingDays = {
+  'mo': false,
+  'tu': false,
+  'we': false,
+  'th': false,
+  'fr': false,
+  'sa': false,
+  'su': false,
+};
+
 
 /**
  * Returns a date with a random limited deviation from current date
@@ -25,6 +35,26 @@ const getRandomDate = (deviationDays) => {
 
 
 /**
+ * Returns an object of randomized repeating days
+ * @return {Object} repeating days
+ */
+const generateRepeatingDays = () => {
+  const repeatingDays = {};
+
+  for (let key in DefaultRepeatingDays) {
+    // Calling Cthulhu 🐙 here to check if I can use for..in
+    // Cause of ESLint rules
+    // I DO understand what I'm doing here, but still looks weird
+    if (Object.prototype.hasOwnProperty.call(DefaultRepeatingDays, key)) {
+      repeatingDays[key] = Math.random() > 0.5;
+    }
+  }
+
+  return repeatingDays;
+};
+
+
+/**
  * Returns random task
  * @return {Object} task object
  */
@@ -34,7 +64,7 @@ const generateTask = () => {
   return {
     description: getRandomArrayItem(TaskDescriptions),
     dueDate,
-    repeatingDays: {},
+    repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
   };
 };
 
