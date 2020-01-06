@@ -5,6 +5,11 @@ import {createTaskTemplate} from './components/task';
 import {createTaskEditTemplate} from './components/task-edit';
 import {createLoadMoreButtonTemplate} from './components/load-more-button';
 
+import {generateTask} from './mock/task';
+
+console.log(generateTask());
+
+
 /**
  * Renders HTML markup into exact place of HTML Element
  * @param {HTMLElement} parentElement element in which to render HTML markup
