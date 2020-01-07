@@ -8,8 +8,8 @@ import {createLoadMoreButtonTemplate} from './components/load-more-button';
 import {generateTask, generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
 
-// console.log(generateTasks(3));
-console.log(generateFilters());
+console.log(generateTasks(3));
+// console.log(generateFilters());
 
 
 /**

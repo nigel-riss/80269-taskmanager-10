@@ -1,6 +1,6 @@
 import {getRandomInteger} from '../utils';
 import {getRandomArrayItem} from '../utils';
-
+import { COLORS } from '../const';
 
 const TaskDescriptions = [
   `Изучить теорию`,
@@ -24,14 +24,6 @@ const Tags = [
   `practice`,
   `intensive`,
   `keks`,
-];
-
-const Colors = [
-  `black`,
-  `yellow`,
-  `blue`,
-  `green`,
-  `pink`,
 ];
 
 
@@ -99,7 +91,7 @@ const generateTask = () => {
     dueDate,
     repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
     tags: generateTags(),
-    color: getRandomArrayItem(Colors),
+    color: getRandomArrayItem(COLORS),
     isFavorite: Math.random() > 0.5,
     isArchived: Math.random() > 0.5,
   };

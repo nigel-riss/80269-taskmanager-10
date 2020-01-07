@@ -21,5 +21,31 @@ const getRandomArrayItem = (array) => {
 };
 
 
+/**
+ * Returns value in 2 digit zero padding format
+ * @param {number} value number to pad
+ * @return {String} Zero padded value
+ */
+const castTimeFormat = (value) => {
+  return value < 10 ? `0${value}` : String(value);
+};
+
+
+/**
+ * Returns formated date
+ * @param {Date} date date to format
+ * @return {String} formated string (HH:MM am|pm)
+ */
+const formatTime = (date) => {
+  const hours = castTimeFormat(date.getHours() % 12);
+  const minutes = castTimeFormat(date.minutes());
+
+  const interval = date.getHours() > 11 ? `pm` : `am`;
+
+  return `${hours}:${minutes} ${interval}`;
+}
+
+
 export {getRandomInteger};
 export {getRandomArrayItem};
+export {formatTime};
