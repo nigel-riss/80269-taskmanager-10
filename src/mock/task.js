@@ -18,6 +18,22 @@ const DefaultRepeatingDays = {
   'su': false,
 };
 
+const Tags = [
+  `homework`,
+  `theory`,
+  `practice`,
+  `intensive`,
+  `keks`,
+];
+
+const Colors = [
+  `black`,
+  `yellow`,
+  `blue`,
+  `green`,
+  `pink`,
+];
+
 
 /**
  * Returns a date with a random limited deviation from current date
@@ -55,6 +71,23 @@ const generateRepeatingDays = () => {
 
 
 /**
+ * Returns a Set of up to 3 randomly selected tags
+ * @return {Set} tags
+ */
+const generateTags = () => {
+  const tags = new Set();
+
+  const tagsNumber = getRandomInteger(0, 3);
+  const tempArray = Array.from(Tags);
+  for (let i = 0; i < tagsNumber; i++) {
+    tags.add(tempArray.splice(getRandomInteger(0, tempArray.length - 1), 1)[0]);
+  }
+
+  return tags;
+};
+
+
+/**
  * Returns random task
  * @return {Object} task object
  */
@@ -65,6 +98,10 @@ const generateTask = () => {
     description: getRandomArrayItem(TaskDescriptions),
     dueDate,
     repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
+    tags: generateTags(),
+    color: getRandomArrayItem(Colors),
+    isFavorite: Math.random() > 0.5,
+    isArchived: Math.random() > 0.5,
   };
 };
 
