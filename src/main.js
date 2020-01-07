@@ -9,8 +9,6 @@ import {generateTask, generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
 
 console.log(generateTasks(3));
-// console.log(generateFilters());
-
 
 /**
  * Renders HTML markup into exact place of HTML Element
@@ -26,7 +24,7 @@ const mainElement = document.querySelector(`.main`);
 const mainControlElement = mainElement.querySelector(`.main__control`);
 
 renderElement(mainControlElement, createMainMenuTemplate());
-renderElement(mainElement, createFilterTemplate());
+renderElement(mainElement, createFilterTemplate(generateFilters()));
 
 renderElement(mainElement, createBoardTemplate());
 const boardElement = mainElement.querySelector(`.board`);

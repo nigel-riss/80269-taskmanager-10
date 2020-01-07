@@ -1,13 +1,13 @@
 import {getRandomInteger} from '../utils';
 
 const FilterNames = [
-  `All`,
-  `Overdue`,
-  `Today`,
-  `Favorites`,
-  `Repeating`,
-  `Tags`,
-  `Archive`,
+  `all`,
+  `overdue`,
+  `today`,
+  `favorites`,
+  `repeating`,
+  `tags`,
+  `archive`,
 ];
 
 
