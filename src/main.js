@@ -5,7 +5,7 @@ import {createTaskTemplate} from './components/task';
 import {createTaskEditTemplate} from './components/task-edit';
 import {createLoadMoreButtonTemplate} from './components/load-more-button';
 
-import {generateTasks} from './mock/task';
+import {generateTask, generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
 
 /**
@@ -28,7 +28,7 @@ renderElement(mainElement, createBoardTemplate());
 const boardElement = mainElement.querySelector(`.board`);
 const boardTasksContainer = boardElement.querySelector(`.board__tasks`);
 
-renderElement(boardTasksContainer, createTaskEditTemplate());
+renderElement(boardTasksContainer, createTaskEditTemplate(generateTask()));
 
 const tasks = generateTasks(6);
 for (let task of tasks) {

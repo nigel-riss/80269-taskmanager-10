@@ -1,6 +1,12 @@
 import {formatTime} from '../utils';
 import {MONTH_NAMES} from '../const';
 
+
+/**
+ * Returns tags markup
+ * @param {Array} tags array of tags
+ * @return {String} tags markup
+ */
 const createTagsMarkup = (tags) => {
   return tags.map((tag) => {
     return (
@@ -26,8 +32,8 @@ const createTaskTemplate = (task) => {
     repeatingDays,
     tags,
     color,
-    isFavorite,
-    isArchived,
+    // isFavorite,
+    // isArchived,
   } = task;
 
   const isDateShowing = !!dueDate;

@@ -1,8 +1,8 @@
 /**
  * Returns a random integer in a range
- * @param {number} min minimal number (included)
- * @param {number} max maximal number (included)
- * @return {number} random number
+ * @param {Number} min minimal number (included)
+ * @param {Number} max maximal number (included)
+ * @return {Number} random number
  */
 const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -23,7 +23,7 @@ const getRandomArrayItem = (array) => {
 
 /**
  * Returns value in 2 digit zero padding format
- * @param {number} value number to pad
+ * @param {Number} value number to pad
  * @return {String} Zero padded value
  */
 const castTimeFormat = (value) => {

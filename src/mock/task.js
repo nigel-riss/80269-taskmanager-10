@@ -29,7 +29,7 @@ const Tags = [
 
 /**
  * Returns a date with a random limited deviation from current date
- * @param {number} deviationDays deviation limit in days
+ * @param {Number} deviationDays deviation limit in days
  * @return {Date} random date
  */
 const getRandomDate = (deviationDays) => {
@@ -100,7 +100,7 @@ const generateTask = () => {
 
 /**
  * Returns array of generated tasks
- * @param {number} numberOfTasks number of tasks to generate
+ * @param {Number} numberOfTasks number of tasks to generate
  * @return {Array} array of tasks
  */
 const generateTasks = (numberOfTasks) => {
