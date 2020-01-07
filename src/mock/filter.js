@@ -11,6 +11,10 @@ const FilterNames = [
 ];
 
 
+/**
+ * Returns an array of filter objects {name, count}
+ * @return {Object} filters
+ */
 const generateFilters = () => {
   return FilterNames.map((it) => {
     return {
@@ -19,5 +23,6 @@ const generateFilters = () => {
     };
   });
 };
+
 
 export {generateFilters};

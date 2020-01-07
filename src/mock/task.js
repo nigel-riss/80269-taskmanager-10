@@ -105,4 +105,17 @@ const generateTask = () => {
   };
 };
 
-export {generateTask};
+
+/**
+ * Returns array of generated tasks
+ * @param {number} numberOfTasks number of tasks to generate
+ * @return {Array} array of tasks
+ */
+const generateTasks = (numberOfTasks) => {
+  return new Array(numberOfTasks)
+    .fill(``)
+    .map(generateTask);
+};
+
+
+export {generateTask, generateTasks};

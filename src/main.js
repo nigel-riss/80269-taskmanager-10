@@ -5,9 +5,11 @@ import {createTaskTemplate} from './components/task';
 import {createTaskEditTemplate} from './components/task-edit';
 import {createLoadMoreButtonTemplate} from './components/load-more-button';
 
-import {generateTask} from './mock/task';
+import {generateTask, generateTasks} from './mock/task';
+import {generateFilters} from './mock/filter';
 
-console.log(generateTask());
+// console.log(generateTasks(3));
+console.log(generateFilters());
 
 
 /**
