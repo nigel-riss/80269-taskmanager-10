@@ -34,11 +34,9 @@ const createFilterTemplate = (filters) => {
   }).join(`\n`);
 
   return (
-    `
-      <section class="main__filter filter container">
-        ${filtersMarkup}
-      </section>
-    `
+    `<section class="main__filter filter container">
+      ${filtersMarkup}
+    </section>`
   );
 };
 
