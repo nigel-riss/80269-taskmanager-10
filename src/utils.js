@@ -38,12 +38,12 @@ const castTimeFormat = (value) => {
  */
 const formatTime = (date) => {
   const hours = castTimeFormat(date.getHours() % 12);
-  const minutes = castTimeFormat(date.minutes());
+  const minutes = castTimeFormat(date.getMinutes());
 
-  const interval = date.getHours() > 11 ? `pm` : `am`;
+  const interval = date.getHours() > 11 ? `PM` : `AM`;
 
   return `${hours}:${minutes} ${interval}`;
-}
+};
 
 
 export {getRandomInteger};

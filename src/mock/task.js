@@ -1,6 +1,6 @@
 import {getRandomInteger} from '../utils';
 import {getRandomArrayItem} from '../utils';
-import { COLORS } from '../const';
+import {COLORS} from '../const';
 
 const TaskDescriptions = [
   `Изучить теорию`,

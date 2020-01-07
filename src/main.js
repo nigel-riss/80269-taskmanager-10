@@ -5,10 +5,8 @@ import {createTaskTemplate} from './components/task';
 import {createTaskEditTemplate} from './components/task-edit';
 import {createLoadMoreButtonTemplate} from './components/load-more-button';
 
-import {generateTask, generateTasks} from './mock/task';
+import {generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
-
-console.log(generateTasks(3));
 
 /**
  * Renders HTML markup into exact place of HTML Element
@@ -31,8 +29,10 @@ const boardElement = mainElement.querySelector(`.board`);
 const boardTasksContainer = boardElement.querySelector(`.board__tasks`);
 
 renderElement(boardTasksContainer, createTaskEditTemplate());
-renderElement(boardTasksContainer, createTaskTemplate());
-renderElement(boardTasksContainer, createTaskTemplate());
-renderElement(boardTasksContainer, createTaskTemplate());
+
+const tasks = generateTasks(6);
+for (let task of tasks) {
+  renderElement(boardTasksContainer, createTaskTemplate(task));
+}
 
 renderElement(boardElement, createLoadMoreButtonTemplate());
