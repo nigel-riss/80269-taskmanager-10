@@ -1,5 +1,5 @@
 import {COLORS, MONTH_NAMES, DAYS} from '../const';
-import {formatTime} from '../utils';
+import {formatTime, createElement} from '../utils';
 
 
 /**
@@ -137,8 +137,9 @@ const createTaskEditTemplate = (task) => {
   const colorsMarkup = createColorsMarkup(COLORS, color);
 
 
-  return `
-    <article class="card card--edit card--${color} ${repeatClass} ${deadlineClass}">
+  return (
+
+    `<article class="card card--edit card--${color} ${repeatClass} ${deadlineClass}">
       <form class="card__form" method="get">
         <div class="card__inner">
           <div class="card__color-bar">
@@ -207,8 +208,30 @@ const createTaskEditTemplate = (task) => {
           </div>
         </div>
       </form>
-    </article>
-  `;
+    </article>`
+  );
 };
 
-export {createTaskEditTemplate};
+export default class TaskEdit {
+  constructor(task) {
+    this._task = task;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskEditTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

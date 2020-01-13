@@ -1,8 +1,10 @@
+import {createElement} from '../utils';
+
 /**
- * Creates Main Menu template
- * @return {string} Main Menu markup
+ * Creates Site Menu template
+ * @return {string} Site Menu markup
  */
-const createMainMenuTemplate = () => {
+const createSiteMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
       <input
@@ -35,4 +37,24 @@ const createMainMenuTemplate = () => {
   );
 };
 
-export {createMainMenuTemplate};
+export default class SiteMenu {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createSiteMenuTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
