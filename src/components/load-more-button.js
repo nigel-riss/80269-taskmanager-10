@@ -5,9 +5,9 @@ import {createElement} from '../utils';
  * @return {string} Load More button markup
  */
 const createLoadMoreButtonTemplate = () => {
-  return `
-    <button class="load-more" type="button">load more</button>
-  `;
+  return (
+    `<button class="load-more" type="button">load more</button>`
+  );
 };
 
 export default class LoadMoreButton {
