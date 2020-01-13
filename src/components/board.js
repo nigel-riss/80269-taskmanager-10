@@ -1,10 +1,12 @@
+import {createElement} from '../utils';
+
 /**
  * Creates Board template
  * @return {string} Board markup
  */
 const createBoardTemplate = () => {
-  return `
-    <section class="board container">
+  return (
+    `<section class="board container">
       <div class="board__filter-list">
         <a href="#" class="board__filter">SORT BY DEFAULT</a>
         <a href="#" class="board__filter">SORT BY DATE up</a>
@@ -13,8 +15,28 @@ const createBoardTemplate = () => {
 
       <div class="board__tasks">
       </div>
-    </section>
-  `;
+    </section>`
+  );
 };
 
-export {createBoardTemplate};
+export default class Board {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createBoardTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
