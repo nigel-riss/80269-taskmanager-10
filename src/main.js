@@ -16,6 +16,24 @@ const INITIAL_TASKS_SHOWN_NUMBER = 8;
 const BY_BUTTON_TASKS_SHOWN_NUMBER = 8;
 
 
+const renderTask = (task) => {
+  const taskComponent = new TaskComponent(task);
+  const taskEditComponent = new TaskEditComponent(task);
+
+  const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
+  editButton.addEventListener(`click`, () => {
+    taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
+  });
+
+  const editForm = taskEditComponent.getElement().querySelector(`form`);
+  editForm.addEventListener(`submit`, () => {
+    taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
+  });
+
+  render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
+};
+
+
 const mainElement = document.querySelector(`.main`);
 const mainControlElement = mainElement.querySelector(`.main__control`);
 
@@ -30,17 +48,14 @@ render(mainElement, new FilterComponent(filters).getElement(), RenderPosition.BE
 const boardComponent = new BoardComponent();
 render(mainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
 
-const boardTasksContainer = boardComponent.getElement().querySelector(`.board__tasks`);
+const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
 const tasks = generateTasks(TASK_NUMBER);
 
-// Render task edit
-render(boardTasksContainer, new TaskEditComponent(tasks[0]).getElement(), RenderPosition.BEFOREEND);
-
 // Render tasks
 let shownTasksNumber = INITIAL_TASKS_SHOWN_NUMBER;
-tasks.slice(1, shownTasksNumber).forEach((task) => {
-  render(boardTasksContainer, new TaskComponent(task).getElement(), RenderPosition.BEFOREEND);
+tasks.slice(0, shownTasksNumber).forEach((task) => {
+  renderTask(task);
 });
 
 // Render LOAD MORE button
@@ -53,7 +68,7 @@ loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
   shownTasksNumber += BY_BUTTON_TASKS_SHOWN_NUMBER;
 
   tasks.slice(prevShownTasksNumber, shownTasksNumber).forEach((task) => {
-    render(boardTasksContainer, new TaskComponent(task).getElement(), RenderPosition.BEFOREEND);
+    renderTask(task);
   });
 
   if (shownTasksNumber >= TASK_NUMBER) {
