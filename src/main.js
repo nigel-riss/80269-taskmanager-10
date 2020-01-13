@@ -1,4 +1,4 @@
-import {createMainMenuTemplate} from './components/main-nav';
+import {createMainMenuTemplate} from './components/site-menu';
 import {createFilterTemplate} from './components/filter';
 import {createBoardTemplate} from './components/board';
 import {createTaskTemplate} from './components/task';
