@@ -74,16 +74,16 @@ const renderBoard = (boardComponent, tasks) => {
   // Render LOAD MORE button
   const loadMoreButtonComponent = new LoadMoreButtonComponent();
   render(boardComponent.getElement(), loadMoreButtonComponent.getElement(), RenderPosition.BEFOREEND);
-  
+
   // LOAD MORE button logic
   loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
     const prevShownTasksNumber = shownTasksNumber;
     shownTasksNumber += BY_BUTTON_TASKS_SHOWN_NUMBER;
-  
+
     tasks.slice(prevShownTasksNumber, shownTasksNumber).forEach((task) => {
       renderTask(taskListElement, task);
     });
-  
+
     if (shownTasksNumber >= TASK_NUMBER) {
       loadMoreButtonComponent.getElement().remove();
       loadMoreButtonComponent.removeElement();
