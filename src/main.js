@@ -7,10 +7,8 @@ import TaskComponent from './components/task';
 import TaskEditComponent from './components/task-edit';
 import NoTasksComponent from './components/no-tasks';
 import LoadMoreButtonComponent from './components/load-more-button';
-
 import {generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
-
 import {render, RenderPosition} from './utils';
 
 
@@ -35,8 +33,7 @@ const renderTask = (taskListElement, task) => {
 
   const replaceTaskToEdit = () => {
     taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
-  }
-
+  };
 
   const taskComponent = new TaskComponent(task);
   const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
@@ -55,26 +52,14 @@ const renderTask = (taskListElement, task) => {
 };
 
 
-const mainElement = document.querySelector(`.main`);
-const mainControlElement = mainElement.querySelector(`.main__control`);
+const renderBoard = (boardComponent, tasks) => {
+  const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
-// Render main menu
-render(mainControlElement, new SiteMenuComponent().getElement(), RenderPosition.BEFOREEND);
+  if (isAllTasksArchived || tasks.length === 0) {
+    render(boardComponent.getElement(), new NoTasksComponent().getElement(), RenderPosition.BEFOREEND);
+    return;
+  }
 
-// Render filters
-const filters = generateFilters();
-render(mainElement, new FilterComponent(filters).getElement(), RenderPosition.BEFOREEND);
-
-// Render board
-const boardComponent = new BoardComponent();
-render(mainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
-
-const tasks = generateTasks(TASK_NUMBER);
-const isAllTasksArchived = tasks.every((task) => task.isArchive);
-
-if (isAllTasksArchived || tasks.length === 0) {
-  render(boardComponent.getElement(), new NoTasksComponent().getElement(), RenderPosition.BEFOREEND);
-} else {
   render(boardComponent.getElement(), new SortComponent().getElement(), RenderPosition.BEFOREEND);
   render(boardComponent.getElement(), new TasksComponent().getElement(), RenderPosition.BEFOREEND);
 
@@ -104,4 +89,23 @@ if (isAllTasksArchived || tasks.length === 0) {
       loadMoreButtonComponent.removeElement();
     }
   });
-}
+};
+
+
+const mainElement = document.querySelector(`.main`);
+const mainControlElement = mainElement.querySelector(`.main__control`);
+
+// Render main menu
+render(mainControlElement, new SiteMenuComponent().getElement(), RenderPosition.BEFOREEND);
+
+// Render filters
+const filters = generateFilters();
+render(mainElement, new FilterComponent(filters).getElement(), RenderPosition.BEFOREEND);
+
+// Render board
+const boardComponent = new BoardComponent();
+render(mainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
+
+const tasks = generateTasks(TASK_NUMBER);
+
+renderBoard(boardComponent, tasks);
