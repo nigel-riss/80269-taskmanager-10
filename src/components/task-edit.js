@@ -1,5 +1,5 @@
 import {COLORS, MONTH_NAMES, DAYS} from '../const';
-import {formatTime} from '../utils';
+import {formatTime} from '../utils/common';
 import AbstractComponent from './abstract-component';
 
 

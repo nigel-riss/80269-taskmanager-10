@@ -9,7 +9,7 @@ import NoTasksComponent from './components/no-tasks';
 import LoadMoreButtonComponent from './components/load-more-button';
 import {generateTasks} from './mock/task';
 import {generateFilters} from './mock/filter';
-import {render, RenderPosition} from './utils';
+import {render, RenderPosition} from './utils/render';
 
 
 const TASK_NUMBER = 22;

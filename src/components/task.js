@@ -1,4 +1,4 @@
-import {formatTime} from '../utils';
+import {formatTime} from '../utils/common';
 import {MONTH_NAMES} from '../const';
 import AbstractComponent from './abstract-component';
 

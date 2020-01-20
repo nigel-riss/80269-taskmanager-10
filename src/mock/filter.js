@@ -1,4 +1,4 @@
-import {getRandomInteger} from '../utils';
+import {getRandomInteger} from '../utils/common';
 
 const FilterNames = [
   `all`,
@@ -15,7 +15,7 @@ const FilterNames = [
  * Returns an array of filter objects {name, count}
  * @return {Object} filters
  */
-const generateFilters = () => {
+export const generateFilters = () => {
   return FilterNames.map((it) => {
     return {
       name: it,
@@ -23,6 +23,3 @@ const generateFilters = () => {
     };
   });
 };
-
-
-export {generateFilters};

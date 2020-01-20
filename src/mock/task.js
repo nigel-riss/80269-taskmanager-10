@@ -1,5 +1,5 @@
-import {getRandomInteger} from '../utils';
-import {getRandomArrayItem} from '../utils';
+import {getRandomInteger} from '../utils/common';
+import {getRandomArrayItem} from '../utils/common';
 import {COLORS} from '../const';
 
 const TaskDescriptions = [
@@ -103,11 +103,8 @@ const generateTask = () => {
  * @param {Number} numberOfTasks number of tasks to generate
  * @return {Array} array of tasks
  */
-const generateTasks = (numberOfTasks) => {
+export const generateTasks = (numberOfTasks) => {
   return new Array(numberOfTasks)
     .fill(``)
     .map(generateTask);
 };
-
-
-export {generateTask, generateTasks};
