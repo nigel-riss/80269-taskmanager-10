@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Куренков](https://up.htmlacademy.ru/ecmascript/10/user/80269).
-* Наставник: `Неизвестно`.
+* Наставник: `Без наставника`.
 
 ---
 
