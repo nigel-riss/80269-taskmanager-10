@@ -1,5 +1,5 @@
 
-import SortComponent from '../components/sort';
+import SortComponent, {SortType} from '../components/sort';
 import TasksComponent from '../components/tasks';
 import TaskComponent from '../components/task';
 import TaskEditComponent from '../components/task-edit';
@@ -94,11 +94,33 @@ export default class BoardController {
 
     // Render tasks
     let shownTasksNumber = INITIAL_TASKS_SHOWN_NUMBER;
-    tasks.slice(0, shownTasksNumber)
-      .forEach((task) => {
-        renderTask(taskListElement, task);
-      });
-
+    renderTasks(taskListElement, tasks.slice(0, shownTasksNumber));
     renderLoadMoreButton();
+
+    this._sortComponent.setSortTypeChangeHandler((sortType) => {
+      let sortedTasks = [];
+
+      switch (sortType) {
+        case SortType.DATE_UP:
+          sortedTasks = tasks.slice().sort((a, b) => a.dueDate - b.dueDate);
+          break;
+        case SortType.DATE_DOWN:
+          sortedTasks = tasks.slice().sort((a, b) => b.dueDate - a.dueDate);
+          break;
+        case SortType.DEFAULT:
+          sortedTasks = tasks.slice(0, shownTasksNumber);
+          break;
+      }
+
+      taskListElement.innerHTML = ``;
+
+      renderTasks(taskListElement, sortedTasks);
+
+      if (sortType === SortType.DEFAULT) {
+        renderLoadMoreButton();
+      } else {
+        remove(this._loadMoreButtonComponent);
+      }
+    });
   }
 }
