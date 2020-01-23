@@ -1,5 +1,3 @@
-import AbstractComponent from "../components/abstract-component";
-
 export const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`,
