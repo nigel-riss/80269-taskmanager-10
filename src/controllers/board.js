@@ -41,6 +41,12 @@ const renderTask = (taskListElement, task) => {
   render(taskListElement, taskComponent, RenderPosition.BEFOREEND);
 };
 
+const renderTasks = (taskListElement, tasks) => {
+  tasks.forEach((task) => {
+    renderTask(taskListElement, task);
+  });
+};
+
 export default class BoardController {
   constructor(container) {
     this._container = container;
@@ -52,6 +58,27 @@ export default class BoardController {
   }
 
   render(tasks) {
+    const renderLoadMoreButton = () => {
+      if (shownTasksNumber >= tasks.length) {
+        return;
+      }
+
+      // Render LOAD MORE button
+      render(container, this._loadMoreButtonComponent, RenderPosition.BEFOREEND);
+
+      // LOAD MORE button logic
+      this._loadMoreButtonComponent.setClickHandler(() => {
+        const prevShownTasksNumber = shownTasksNumber;
+        shownTasksNumber += BY_BUTTON_TASKS_SHOWN_NUMBER;
+
+        renderTasks(taskListElement, tasks.slice(prevShownTasksNumber, shownTasksNumber));
+
+        if (shownTasksNumber >= tasks.length) {
+          remove(this._loadMoreButtonComponent);
+        }
+      });
+    };
+
     const container = this._container.getElement();
     const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
@@ -72,21 +99,6 @@ export default class BoardController {
         renderTask(taskListElement, task);
       });
 
-    // Render LOAD MORE button
-    render(container, this._loadMoreButtonComponent, RenderPosition.BEFOREEND);
-
-    // LOAD MORE button logic
-    this._loadMoreButtonComponent.setClickHandler(() => {
-      const prevShownTasksNumber = shownTasksNumber;
-      shownTasksNumber += BY_BUTTON_TASKS_SHOWN_NUMBER;
-
-      tasks.slice(prevShownTasksNumber, shownTasksNumber).forEach((task) => {
-        renderTask(taskListElement, task);
-      });
-
-      if (shownTasksNumber >= tasks.length) {
-        remove(this._loadMoreButtonComponent);
-      }
-    });
+    renderLoadMoreButton();
   }
 }
